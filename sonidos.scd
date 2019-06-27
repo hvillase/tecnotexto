@@ -1,14 +1,14 @@
-// Lectura de buffers y sampleos
+// Lectura sampleos
 
-// 808 sounds de mi caja de ritmos ==================================================
-// 44100
+// 808 sounds
+// 44100 khz
 
+// Dictionary
 (
-~sd808 = Buffer.read(s, Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/sd808.wav");
-~bd808 = Buffer.read(s, Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/bd808.wav");
-~bd2808 = Buffer.read(s, Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/bd2808.wav");
-~hh808 = Buffer.read(s, Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/hh808.wav");
-~ohh808 = Buffer.read(s, Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/ohh808.wav");
+~s808 = Dictionary.new;
+~s808.add(\o -> PathName(Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/").entries.collect({
+	arg sonido;
+	Buffer.read(s, sonido.fullPath);
+})
+)
 );
-
-// otros sampleos

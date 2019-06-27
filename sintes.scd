@@ -31,47 +31,47 @@
 
 // -- reproduce sampleos
 (
-SynthDef(\sd808, {|rate=1, st=0, asd808=1, t10s=0.01, t20s=1.5, t30s=0.1, o0s=0|
+SynthDef(\bd808, {|rate=1, st=0, abd808=1, t10s=0.01, t20s=0.01, t30s=0.2, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~sd808.numChannels, ~sd808.bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][0].numChannels, ~s808[\o][0].bufnum, rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
-	Out.ar(o0s, (sen * env) * asd808);
+	Out.ar(o0s, (sen * env) * abd808);
 }).add
 );
 
 (
-SynthDef(\bd808, {|rate=1, st=0, a0s=1, t10s=0.01, t20s=1.5, t30s=0.1, o0s=0|
+SynthDef(\bd2808, {|rate=1, st=0, abd2808=1, t10s=0.01, t20s=0.01, t30s=0.15, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~bd808.numChannels, ~bd808.bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][1].numChannels, ~s808[\o][1].bufnum, rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
-	Out.ar(o0s, (sen * env) * a0s);
+	Out.ar(o0s, (sen * env) * abd2808);
 }).add
 );
 
 (
-SynthDef(\bd2808, {|rate=1, st=0, a0s=1, t10s=0.01, t20s=1.5, t30s=0.1, o0s=0|
+SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 0.015, t30s = 0.3, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~bd2808.numChannels, ~bd2808.bufnum, rate, startPos:st);
-	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
-	Out.ar(o0s, (sen * env) * a0s);
-}).add
-);
-
-(
-SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 1.5, t30s = 0.1, o0s = 0|
-	var sen, env;
-	sen = PlayBuf.ar(~hh808.numChannels, ~hh808.bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][2].numChannels, ~s808[\o][2].bufnum, rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * ahh808);
 }).add
 );
 
 (
-SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 2, t30s = 0.1, o0s = 0|
+SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 0.03, t30s = 0.25, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~ohh808.numChannels, ~ohh808.bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][3].numChannels, ~s808[\o][3].bufnum, rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * aohh808);
+}).add
+);
+
+(
+SynthDef(\sd808, {|rate=1, st=0, asd808=1, t10s=0.01, t20s=0.015, t30s=0.3, o0s=0|
+	var sen, env;
+	sen = PlayBuf.ar(~s808[\o][4].numChannels, ~s808[\o][4].bufnum, rate, startPos:st);
+	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
+	Out.ar(o0s, (sen * env) * asd808);
 }).add
 );
 
@@ -315,7 +315,7 @@ Out.ar(o4f, paneo * env)
 // TecnoTexto.fx
 //================================
 
-// --- Reverb 1
+// --- Reverb 1 - 9
 (
 SynthDef(\rev1, {|mix=0.4, room=0.9, damp=0.1, amp=1, gate=1, out=0|
 	var sen, env;
@@ -325,7 +325,7 @@ SynthDef(\rev1, {|mix=0.4, room=0.9, damp=0.1, amp=1, gate=1, out=0|
 }).add
 );
 
-// --- Reverb 2
+// --- Reverb 2 - 11
 (
 SynthDef(\rev2, {|mix=0.3, room=0.73, damp=0.9, amp=1, gate=1, out=0|
 	var sen, env;
@@ -335,17 +335,17 @@ SynthDef(\rev2, {|mix=0.3, room=0.73, damp=0.9, amp=1, gate=1, out=0|
 }).add
 );
 
-// --- lpf
+// --- lpf - 13
 (
 SynthDef(\lpf, {|cfl = 100, gate = 1,  out = 0|
 	var lpf, env;
 	lpf = LPF.ar(InFeedback.ar(13, 2), cfl, 1);
-	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction:0);
+	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
 	Out.ar(out, lpf * env);
 }).add
 );
 
-// --- hpf
+// --- hpf - 15
 (
 SynthDef(\hpf, {|cfh = 1000, gate = 1, out = 0|
 	var hpf, env;
@@ -355,7 +355,7 @@ SynthDef(\hpf, {|cfh = 1000, gate = 1, out = 0|
 }).add
 );
 
-// --- bpf
+// --- bpf - 17
 (
 SynthDef(\bpf, {|cfb = 1000, st=500, end=1000, dur=2, rq=1, gate = 1, out = 0|
 	var line, bpf, env;
