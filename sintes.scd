@@ -33,7 +33,7 @@
 (
 SynthDef(\bd808, {|rate=1, st=0, abd808=1, t10s=0.01, t20s=0.01, t30s=0.2, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][0].numChannels, ~s808[\o][0].bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][0].numChannels, ~s808[\o][0].bufnum, BufRateScale.kr(~s808[\o][0].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * abd808);
 }).add
@@ -42,7 +42,7 @@ SynthDef(\bd808, {|rate=1, st=0, abd808=1, t10s=0.01, t20s=0.01, t30s=0.2, o0s=0
 (
 SynthDef(\bd2808, {|rate=1, st=0, abd2808=1, t10s=0.01, t20s=0.01, t30s=0.15, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][1].numChannels, ~s808[\o][1].bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][1].numChannels, ~s808[\o][1].bufnum, BufRateScale.kr(~s808[\o][1].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * abd2808);
 }).add
@@ -51,7 +51,7 @@ SynthDef(\bd2808, {|rate=1, st=0, abd2808=1, t10s=0.01, t20s=0.01, t30s=0.15, o0
 (
 SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 0.015, t30s = 0.3, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][2].numChannels, ~s808[\o][2].bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][2].numChannels, ~s808[\o][2].bufnum, BufRateScale.kr(~s808[\o][2].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * ahh808);
 }).add
@@ -60,7 +60,7 @@ SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 0.015, t30s
 (
 SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 0.03, t30s = 0.25, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][3].numChannels, ~s808[\o][3].bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][3].numChannels, ~s808[\o][3].bufnum, BufRateScale.kr(~s808[\o][3].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * aohh808);
 }).add
@@ -69,7 +69,7 @@ SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 0.03, t30
 (
 SynthDef(\sd808, {|rate=1, st=0, asd808=1, t10s=0.01, t20s=0.015, t30s=0.3, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][4].numChannels, ~s808[\o][4].bufnum, rate, startPos:st);
+	sen = PlayBuf.ar(~s808[\o][4].numChannels, ~s808[\o][4].bufnum, BufRateScale.kr(~s808[\o][4].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * asd808);
 }).add

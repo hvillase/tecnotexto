@@ -1,7 +1,7 @@
 // Lectura sampleos
 
 // 808 sounds
-// 44100 khz
+// 44100 khz, usar BufSampleRate
 
 // Dictionary
 (
