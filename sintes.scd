@@ -28,12 +28,11 @@
 (
 // === GRABACION y wavetable
 ~bch = Buffer.alloc(s, 1024, 1); // cheby
-
-// -- reproduce sampleos
+// -- reproduce sampleos, [\snd] es un diccionario
 (
 SynthDef(\bd808, {|rate=1, st=0, abd808=1, t10s=0.01, t20s=0.01, t30s=0.2, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][0].numChannels, ~s808[\o][0].bufnum, BufRateScale.kr(~s808[\o][0].bufnum) * rate, startPos:st);
+	sen = PlayBuf.ar(TecnoTexto.soundDictionary[\snd][0].numChannels, TecnoTexto.soundDictionary[\snd][0].bufnum, BufRateScale.kr(TecnoTexto.soundDictionary[\snd][0].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * abd808);
 }).add
@@ -42,7 +41,7 @@ SynthDef(\bd808, {|rate=1, st=0, abd808=1, t10s=0.01, t20s=0.01, t30s=0.2, o0s=0
 (
 SynthDef(\bd2808, {|rate=1, st=0, abd2808=1, t10s=0.01, t20s=0.01, t30s=0.15, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][1].numChannels, ~s808[\o][1].bufnum, BufRateScale.kr(~s808[\o][1].bufnum) * rate, startPos:st);
+	sen = PlayBuf.ar(TecnoTexto.soundDictionary[\snd][1].numChannels, TecnoTexto.soundDictionary[\snd][1].bufnum, BufRateScale.kr(TecnoTexto.soundDictionary[\snd][1].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * abd2808);
 }).add
@@ -51,7 +50,7 @@ SynthDef(\bd2808, {|rate=1, st=0, abd2808=1, t10s=0.01, t20s=0.01, t30s=0.15, o0
 (
 SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 0.015, t30s = 0.3, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][2].numChannels, ~s808[\o][2].bufnum, BufRateScale.kr(~s808[\o][2].bufnum) * rate, startPos:st);
+	sen = PlayBuf.ar(TecnoTexto.soundDictionary[\snd][2].numChannels, TecnoTexto.soundDictionary[\snd][2].bufnum, BufRateScale.kr(TecnoTexto.soundDictionary[\snd][2].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * ahh808);
 }).add
@@ -60,7 +59,7 @@ SynthDef(\hh808, {|rate = 1, st = 0, ahh808 = 1, t10s = 0.01, t20s = 0.015, t30s
 (
 SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 0.03, t30s = 0.25, o0s = 0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][3].numChannels, ~s808[\o][3].bufnum, BufRateScale.kr(~s808[\o][3].bufnum) * rate, startPos:st);
+	sen = PlayBuf.ar(TecnoTexto.soundDictionary[\snd][3].numChannels, TecnoTexto.soundDictionary[\snd][3].bufnum, BufRateScale.kr(TecnoTexto.soundDictionary[\snd][3].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * aohh808);
 }).add
@@ -69,7 +68,7 @@ SynthDef(\ohh808, {|rate = 1, st = 0, aohh808 = 1, t10s = 0.01, t20s = 0.03, t30
 (
 SynthDef(\sd808, {|rate=1, st=0, asd808=1, t10s=0.01, t20s=0.015, t30s=0.3, o0s=0|
 	var sen, env;
-	sen = PlayBuf.ar(~s808[\o][4].numChannels, ~s808[\o][4].bufnum, BufRateScale.kr(~s808[\o][4].bufnum) * rate, startPos:st);
+	sen = PlayBuf.ar(TecnoTexto.soundDictionary[\snd][4].numChannels, TecnoTexto.soundDictionary[\snd][4].bufnum, BufRateScale.kr(TecnoTexto.soundDictionary[\snd][4].bufnum) * rate, startPos:st);
 	env = EnvGen.kr(Env.new([0, 1, 1, 0], [t10s, t20s, t30s] ), doneAction:2);
 	Out.ar(o0s, (sen * env) * asd808);
 }).add
@@ -189,12 +188,12 @@ SynthDef(\bd2, {|fbd2=80, abd2=0.5, atbd2=0, rbd2=0.2, wrap=0.9, pbd2=0|
 
 // --- kick
 (
-SynthDef(\kick, {|fk=80, ak=0.5, rk=0.2, wrap=0.9, pk=0|
+SynthDef(\kick, {|fk=80, ak=0.5, rk=0.2, wrap=0.9, pk=0, ok = 0|
 var sig, env;
 sig = SinOsc.ar(Line.kr(fk * 3,[fk, fk * 1.8], 0.05), pi/2, ak).wrap2(wrap);
 sig = Pan2.ar(sig, pk);
 env = EnvGen.kr(Env.perc(0, rk), doneAction:2);
-Out.ar(0, sig * env)
+Out.ar(ok, sig * env)
 }).add
 );
 
@@ -422,7 +421,7 @@ SynthDef(\ohh, {|aohh=0.19, pohh=0, oohh=0, rohh=0.2|
 );
 
 //=============
-//otros
+// otros
 //=============
 
 // --- wave shape
@@ -435,6 +434,19 @@ SynthDef(\ws, {|freq = 300, aws = 0.5, pws = 0, atws = 0.1, rws = 0.1, ows = 0|
 	sen = Pan2.ar(sen, pws);
 	env = EnvGen.kr(Env.perc(atws, rws), doneAction:2);
 	Out.ar(ows, sen * env);
+}).add
+);
+
+//=============
+// mono
+//=============
+
+(
+SynthDef(\sinem, {|frec = 400, a1m = 0.4, at1m = 0.1, r1m = 0.1, o1m = 0|
+	var sen, env;
+	sen = SinOsc.ar(frec, 0, a1m);
+	env = EnvGen.kr(Env.perc(at1m, r1m), doneAction: 2);
+	Out.ar(o1m, sen * env)
 }).add
 );
 
