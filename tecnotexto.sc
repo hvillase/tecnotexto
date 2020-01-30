@@ -49,7 +49,7 @@ TecnoTexto {
 
 
 	*tempo {arg tempo = 120/60;
-		TempoClock.default.tempo_(tempo);
+		TempoClock.default.tempo_(tempo)
 		^"TecnoTexto Tempo";
 	}
 
