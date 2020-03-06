@@ -10,17 +10,20 @@ TecnoTexto {
 	}
 
 	*waitForBoot {
-		this.sounds;
+		/*this.sounds;
 		fork{2.5.wait; this.synths};
+		*/
+		this.synths;
 		^"waiting";
 	}
-
+/*
+	// Sample Texto
 	*sounds {arg server;
 		soundDictionary = Dictionary.new;
 		soundDictionary.add(\snd -> PathName(Platform.userExtensionDir +/+ "/tecnotexto/sonidos808/").entries.collect({
 	arg sound; Buffer.read(server ? Server.default, sound.fullPath)}))
 	}
-
+*/
 	*synths {
 		thisProcess.interpreter.executeFile((Platform.userExtensionDir ++ "/tecnotexto/sintes.scd").standardizePath);
 		^"Sintes Cargados";
@@ -28,12 +31,12 @@ TecnoTexto {
 
 	*fx {
 		rev1 = Synth(\rev1);
-		rev2 = Synth(\rev2);
+		//rev2 = Synth(\rev2);
 		lpf = Synth(\lpf);
 		hpf = Synth(\hpf);
 		bpf = Synth(\bpf);
 		dly1 = Synth(\delay1);
-		dly2 = Synth(\delay2);
+		//dly2 = Synth(\delay2);
 		^"TecnoTexto Fx";
 	}
 
@@ -46,7 +49,6 @@ TecnoTexto {
 		).play;
 		^"TecnoTexto Test";
 	}
-
 
 	*tempo {arg tempo = 120/60;
 		TempoClock.default.tempo_(tempo)
