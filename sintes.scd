@@ -16,7 +16,7 @@ Out.ar(o1, sen * env);
 
 // --- saw tooth
 (
-SynthDef(\saw,{|freq=300, a2=0.3, p2=0, at2=0.01, r2=0.09, o2=0|
+SynthDef(\saw,{|freq = 300, a2 = 0.3, p2 = 0, at2 = 0.01, r2 = 0.09, o2 = 0|
 var sen, env;
 sen = Saw.ar(freq, a2);
 sen = Pan2.ar(sen, p2);
