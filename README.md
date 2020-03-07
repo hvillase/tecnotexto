@@ -29,4 +29,32 @@ Synth(\sine, [\freq, 440, \pi1 = 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 2.5, \o1,
 
 ## Efectos
 
+Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 1.5, \o1, 9]); // salida \o1 por 9 = reverb
+Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, -0.5, \at, 0.9, \r1, 0.5, \o1, 11]); // salida \o1 por 11 = delay
+
+t.dly1.set(\dt, 0.5, \dct, 4); // cambiando tiempo de delay \dt a medio segundo y decaimiento de delay \dct a 4 segundos
+
+Synth(\sine, [\freq, 400, \a1, 0.6, \p1, 0, \at, 0.1, \r1, 0.5, \o1, 11]); // nuevo tiempo de decaimiento en delay
+
 ## Patrones
+
+// tecnotexto
+
+t.dly1.set(\dt, 0.125, \dct, 1.75);
+
+(
+Pdef(\kl, Pbind(\instrument, Pseq([\saw, Pn(\pulse, 1), \lftri], inf),
+	\note, Pseq([0, 2, 3, Pn(2, 2), 5, 2, 7, Pstutter(2, Pseq([0, 3, 9], 1)), Prand([0, 12], 2)], inf),
+	\octave, Pseq([3, 4, Pn(5, 2), 4, Pn(3, 2)], inf),
+	\a1, Pseq([0.2, 0, 0.2, 0.3, Pseq([0.4, 0.2], 3)].mirror, inf),
+	\a4, Pkey(\a1, inf) * 0.5,
+	\a3, Pkey(\a1, inf) * 1.2,
+	\p1, 0.2,
+	\p4, -0.2,
+	\r4, Pseq([0.2, 0.1, Pn(0.5, 2)], inf),
+	\dur, Pseq([1/8], inf),
+	\o2, 9,
+	\o3, 11,
+	\o4, Pseq([Pn(11, 2), 9, 0], inf)
+)).play
+)

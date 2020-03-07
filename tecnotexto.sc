@@ -1,6 +1,6 @@
 TecnoTexto {
 
-	classvar <rev1, <rev2, <lpf, <hpf, <bpf, <dly1, <dly2, <soundDictionary;
+	classvar <rev1, <lpf, <hpf, <bpf, <dly1;
 
 	*boot {arg scope = false, meter = false;
 	this.waitForBoot;
