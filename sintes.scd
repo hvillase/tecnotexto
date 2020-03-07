@@ -5,7 +5,7 @@
 (
 // --- sine
 (
-SynthDef(\sine, {|freq = 400, pi1=0, a1 = 0.5, p1 = 0, at1 = 0.01, r1 = 0.1, o1 = 0|
+SynthDef(\sine, {|freq = 400, pi1 = 0, a1 = 0.5, p1 = 0, at1 = 0.01, r1 = 0.1, o1 = 0|
 var sen, env;
 sen = SinOsc.ar(freq, pi1, a1);
 sen = Pan2.ar(sen, p1);
