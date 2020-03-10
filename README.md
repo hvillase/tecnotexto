@@ -9,6 +9,7 @@ El documento sintes.scd contiene los SynthDefs de frmas de onda y efectos. Todos
 
 ## Ejemplo
 
+```
 s.boot
 t = TecnoTexto;
 t.boot;
@@ -17,6 +18,7 @@ t.fx;
 Synth(\sine); // Onda sinoidal con valores predeterminados
 
 Synth(\sine, [\r1, 2]); // Modificando su relajamiento
+```
 
 ## Mapeo y nemotecnia
 
@@ -25,19 +27,24 @@ Los valores de sine, que es el primero, comienzan con la primer letra del parám
 
 \sine = sine, \freq = frequency, \pi1 = phase, \a1 = amplitude, \p1 = pan, \at1 = attack, \r1 = release, \o1 = out
 
+```
 Synth(\sine, [\freq, 440, \pi1 = 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 2.5, \o1, 0]);
+```
 
 ## Efectos
 
+```
 Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 1.5, \o1, 9]); // salida \o1 por 9 = reverb
 Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, -0.5, \at, 0.9, \r1, 0.5, \o1, 11]); // salida \o1 por 11 = delay
 
 t.dly1.set(\dt, 0.5, \dct, 4); // cambiando tiempo de delay \dt a medio segundo y decaimiento de delay \dct a 4 segundos
 
 Synth(\sine, [\freq, 400, \a1, 0.6, \p1, 0, \at, 0.1, \r1, 0.5, \o1, 11]); // nuevo tiempo de decaimiento en delay
+```
 
 ## Patrones
 
+```
 // tecnotexto
 
 t.dly1.set(\dt, 0.125, \dct, 1.75);
@@ -58,3 +65,4 @@ Pdef(\kl, Pbind(\instrument, Pseq([\saw, Pn(\pulse, 1), \lftri], inf),
 	\o4, Pseq([Pn(11, 2), 9, 0], inf)
 )).play
 )
+```
