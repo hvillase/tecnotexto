@@ -32,7 +32,7 @@ TecnoTexto {
 		Pbind(\instrument, \default,
 			\dur, 0.5,
 			\amp, 0.1,
-			\note, Pseq([0,1,2,3,4,5,6,7,8], inf),
+			\note, Pseq([0, 1, 2, 3, 4, 5, 6, 7, 8], inf),
 			\out, Pseq([0, 1], 3)
 		).play;
 		^"testing";
