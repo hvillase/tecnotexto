@@ -1,6 +1,6 @@
 TecnoTexto {
 
-	classvar <rev1, <lpf, <hpf, <bpf, <dly1;
+	classvar <rev1, <dly1, <lpf, <hpf, <bpf;
 
 	*boot {arg scope = false, meter = false;
 	this.waitForBoot;
@@ -21,10 +21,10 @@ TecnoTexto {
 
 	*fx {
 		rev1 = Synth(\rev1);
+		dly1 = Synth(\delay1);
 		lpf = Synth(\lpf);
 		hpf = Synth(\hpf);
 		bpf = Synth(\bpf);
-		dly1 = Synth(\delay1);
 		^"effects";
 	}
 
@@ -32,7 +32,7 @@ TecnoTexto {
 		Pbind(\instrument, \default,
 			\dur, 0.5,
 			\amp, 0.1,
-			\note, Pseq([0,1,2,3,4,5,6,7,8], inf),
+			\note, Pseq([0, 1, 2, 3, 4, 5, 6, 7, 8], inf),
 			\out, Pseq([0, 1], 3)
 		).play;
 		^"testing";
