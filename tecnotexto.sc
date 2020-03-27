@@ -1,6 +1,6 @@
 TecnoTexto {
 
-	classvar <rev1, <lpf, <hpf, <bpf, <dly1;
+	classvar <rev1, <dly1, <lpf, <hpf, <bpf;
 
 	*boot {arg scope = false, meter = false;
 	this.waitForBoot;
@@ -21,10 +21,10 @@ TecnoTexto {
 
 	*fx {
 		rev1 = Synth(\rev1);
+		dly1 = Synth(\delay1);
 		lpf = Synth(\lpf);
 		hpf = Synth(\hpf);
 		bpf = Synth(\bpf);
-		dly1 = Synth(\delay1);
 		^"effects";
 	}
 
