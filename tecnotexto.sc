@@ -3,15 +3,10 @@ TecnoTexto {
 	classvar <rev1, <dly1, <lpf, <hpf, <bpf;
 
 	*boot {arg scope = false, meter = false;
-	this.waitForBoot;
+	this.synths;
 		if(scope, {Server.local.scope});
 		if(meter, {Server.local.meter});
 		^"TecnoTexto";
-	}
-
-	*waitForBoot {
-		this.synths;
-		^"waiting";
 	}
 
 	*synths {
@@ -19,12 +14,12 @@ TecnoTexto {
 		^"synths";
 	}
 
-	*fx {
-		rev1 = Synth(\rev1);
-		dly1 = Synth(\delay1);
-		lpf = Synth(\lpf);
-		hpf = Synth(\hpf);
-		bpf = Synth(\bpf);
+	*fx {arg o1=0,o2=0, o3=0, o4=0, o5=0;
+		rev1 = Synth(\rev1, [\out, o1]);
+		dly1 = Synth(\delay1, [\out, o2]);
+		lpf = Synth(\lpf, [\out, o3]);
+		hpf = Synth(\hpf, [\out, o4]);
+		bpf = Synth(\bpf, [\o5, o5]);
 		^"effects";
 	}
 
