@@ -1,23 +1,26 @@
 # TecnoTexto
-Una Clase de SuperCollider para llamar tus SynthDefs.
+Una Clase de SuperCollider para llamar tus SynthDefs y efectos.
 
 ## TecnoTexto
 La clase llama un documento con 5 formas básicas y 5 efectos organizados en SynthDefs: sine, saw, tri, pulse, white noise y silence; además reverb, delay, lpf, hpf y bpf. Los SynthDefs se encuentran en un documento con extensión -scd; este documento puede ser modificado para añadir otros sintetizadores y efectos.
 
 ## Sintes
-El documento sintes.scd contiene los SynthDefs de frmas de onda y efectos. Todos están encpasulados entre un par de paréntesis generales para que sean leídos de manera correcta. Este documento puede ser modificado al añador otros instrumentos y efectos.
+El documento sintes.scd contiene los SynthDefs de formas de onda y efectos. Todos están encpasulados entre un par de paréntesis generales para que sean leídos de manera correcta. Este documento puede ser modificado al añadir otros instrumentos y efectos.
 
 ## Ejemplo
 
 ```
 s.boot
-t = TecnoTexto;
+t = TecnoTexto.new;
 t.boot;
 t.fx;
+t.fxoff; // apaga los efectos
 
 Synth(\sine); // Onda sinoidal con valores predeterminados
 
 Synth(\sine, [\r1, 2]); // Modificando su relajamiento
+
+Synth(\sine, [\o1, 9]); // Salida por reverb
 ```
 
 ## Mapeo y nemotecnia
@@ -37,7 +40,7 @@ Synth(\sine, [\freq, 440, \pi1 = 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 2.5, \o1,
 Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, 0.5, \at, 0.9, \r1, 1.5, \o1, 9]); // salida \o1 por 9 = reverb
 Synth(\sine, [\freq, 440, \pi1, 0, \a1, 0.7, \p1, -0.5, \at, 0.9, \r1, 0.5, \o1, 11]); // salida \o1 por 11 = delay
 
-t.dly1.set(\dt, 0.5, \dct, 4); // cambiando tiempo de delay \dt a medio segundo y decaimiento de delay \dct a 4 segundos
+t.dly.set(\dt, 0.5, \dct, 4); // cambiando tiempo de delay \dt a medio segundo y decaimiento de delay \dct a 4 segundos
 
 Synth(\sine, [\freq, 400, \a1, 0.6, \p1, 0, \at, 0.1, \r1, 0.5, \o1, 11]); // nuevo tiempo de decaimiento en delay
 ```
@@ -47,10 +50,10 @@ Synth(\sine, [\freq, 400, \a1, 0.6, \p1, 0, \at, 0.1, \r1, 0.5, \o1, 11]); // nu
 ```
 // tecnotexto
 
-t.dly1.set(\dt, 0.125, \dct, 1.75);
+t.dly.set(\dt, 0.125, \dct, 1.75);
 
 (
-Pdef(\kl, Pbind(\instrument, Pseq([\saw, Pn(\pulse, 1), \lftri], inf),
+Pdef(\kl, Pbind(\instrument, Pseq([\saw, Pn(\pulse, 2), \lftri], inf),
 	\note, Pseq([0, 2, 3, Pn(2, 2), 5, 2, 7, Pstutter(2, Pseq([0, 3, 9], 1)), Prand([0, 12], 2)], inf),
 	\octave, Pseq([3, 4, Pn(5, 2), 4, Pn(3, 2)], inf),
 	\a1, Pseq([0.2, 0, 0.2, 0.3, Pseq([0.4, 0.2], 3)].mirror, inf),

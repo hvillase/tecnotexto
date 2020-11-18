@@ -73,9 +73,9 @@ Out.ar(0, sen * env);
 
 // --- reverb - bus 9
 (
-SynthDef(\rev1, {|mix = 0.4, room = 0.9, damp = 0.1, amp = 1, gate = 1, out = 0|
+SynthDef(\rev, {|in = 9, mix = 0.4, room = 0.9, damp = 0.1, amp = 1, gate = 1, out = 0|
 	var sen, env;
-	sen = FreeVerb.ar(InFeedback.ar(9, 2), mix, room, damp, amp);
+	sen = FreeVerb.ar(InFeedback.ar(in, 2), mix, room, damp, amp);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.1), gate, doneAction: 0);
 	Out.ar(out, sen * env);
 }).add
@@ -83,9 +83,9 @@ SynthDef(\rev1, {|mix = 0.4, room = 0.9, damp = 0.1, amp = 1, gate = 1, out = 0|
 
 // --- delay - bus 11, mdt = maxdelayTime, dt = delayTime, dct = decayTime
 (
-SynthDef(\delay1, {|mdt = 0.3, dt = 0.25, dct = 2, gate = 1, out = 0|
+SynthDef(\delay, {|in = 11, mdt = 0.3, dt = 0.25, dct = 2, gate = 1, out = 0|
 var del, env;
-	del = CombL.ar(InFeedback.ar(11, 2), mdt, dt, dct);
+	del = CombL.ar(InFeedback.ar(in, 2), mdt, dt, dct);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
 	Out.ar(out, del * env);
 }).add
@@ -93,9 +93,9 @@ var del, env;
 
 // --- lpf - bus 13
 (
-SynthDef(\lpf, {|cfl = 100, gate = 1,  out = 0|
+SynthDef(\lpf, {|in = 13, cfl = 100, gate = 1,  out = 0|
 	var lpf, env;
-	lpf = LPF.ar(InFeedback.ar(13, 2), cfl, 1);
+	lpf = LPF.ar(InFeedback.ar(in, 2), cfl, 1);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
 	Out.ar(out, lpf * env);
 }).add
@@ -103,9 +103,9 @@ SynthDef(\lpf, {|cfl = 100, gate = 1,  out = 0|
 
 // --- hpf - bus 15
 (
-SynthDef(\hpf, {|cfh = 1000, gate = 1, out = 0|
+SynthDef(\hpf, {|in = 15, cfh = 1000, gate = 1, out = 0|
 	var hpf, env;
-	hpf = HPF.ar(InFeedback.ar(15, 2), cfh, 1);
+	hpf = HPF.ar(InFeedback.ar(in, 2), cfh, 1);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
 	Out.ar(out, hpf * env);
 }).add
@@ -113,10 +113,9 @@ SynthDef(\hpf, {|cfh = 1000, gate = 1, out = 0|
 
 // --- bpf - bus 17
 (
-SynthDef(\bpf, {|cfb = 1000, st = 500, end = 1000, dur = 2, rq = 1, gate = 1, out = 0|
-	var line, bpf, env;
-	line = Line.kr(st, end, dur);
-	bpf = BPF.ar(InFeedback.ar(17, 2), cfb, rq, 1);
+SynthDef(\bpf, {|in = 17, cfb = 1000, rq = 1, gate = 1, out = 0|
+	var bpf, env;
+	bpf = BPF.ar(InFeedback.ar(in, 2), cfb, rq, 1);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
 	Out.ar(out, bpf * env);
 }).add

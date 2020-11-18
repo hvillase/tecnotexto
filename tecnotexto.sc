@@ -1,34 +1,34 @@
 TecnoTexto {
 
-	classvar <rev1, <dly1, <lpf, <hpf, <bpf;
+	var <rev, <dly, <lpf, <hpf, <bpf;
 
-	*boot {arg scope = false, meter = false;
-	this.waitForBoot;
+	boot {arg scope = false, meter = false;
+	this.synths;
 		if(scope, {Server.local.scope});
 		if(meter, {Server.local.meter});
 		^"TecnoTexto";
 	}
 
-	*waitForBoot {
-		this.synths;
-		^"waiting";
-	}
-
-	*synths {
+	synths {
 		thisProcess.interpreter.executeFile((Platform.userExtensionDir ++ "/tecnotexto/sintes.scd").standardizePath);
 		^"synths";
 	}
 
-	*fx {
-		rev1 = Synth(\rev1);
-		dly1 = Synth(\delay1);
-		lpf = Synth(\lpf);
-		hpf = Synth(\hpf);
-		bpf = Synth(\bpf);
-		^"effects";
+	fx {arg o1=0, o2=0, o3=0, o4=0, o5=0, i1=9, i2=11, i3=13, i4=15, i5=17;
+		rev=Synth(\rev, [\in, i1, \out, o1]);
+		dly=Synth(\delay, [\in, i2,\out, o2]);
+		lpf=Synth(\lpf, [\in, i3,\out, o3]);
+		hpf=Synth(\hpf, [\in, i4,\out, o4]);
+		bpf=Synth(\bpf, [\in, i5,\out, o5]);
+		^"effects: on";
 	}
 
-	*test {
+	fxoff {
+		rev.free; dly.free; lpf.free; hpf.free; bpf.free;
+		^"effects: off"
+	}
+
+	test {
 		Pbind(\instrument, \default,
 			\dur, 0.5,
 			\amp, 0.1,
@@ -38,7 +38,7 @@ TecnoTexto {
 		^"testing";
 	}
 
-	*tempo {arg tempo = 120/60;
+	tempo {arg tempo = 120/60;
 		TempoClock.default.tempo_(tempo)
 		^"TecnoTexto Tempo";
 	}
