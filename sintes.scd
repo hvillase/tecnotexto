@@ -83,7 +83,7 @@ SynthDef(\rev, {|in = 9, mix = 0.4, room = 0.9, damp = 0.1, amp = 1, gate = 1, o
 
 // --- delay - bus 11, mdt = maxdelayTime, dt = delayTime, dct = decayTime
 (
-SynthDef(\delay, {|in = 11, mdt = 0.3, dt = 0.25, dct = 2, gate = 1, out = 0|
+SynthDef(\dly, {|in = 11, mdt = 0.3, dt = 0.25, dct = 2, gate = 1, out = 0|
 var del, env;
 	del = CombL.ar(InFeedback.ar(in, 2), mdt, dt, dct);
 	env = EnvGen.kr(Env.asr(0.01, 1, 0.01), gate, doneAction: 0);
