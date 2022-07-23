@@ -1,0 +1,118 @@
+TITLE:: TecnoTexto
+summary:: (put short description here)
+categories:: Undocumented classes
+related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
+
+DESCRIPTION::
+TecnoTexto is a class to process audio with delay, reverb and filters.
+
+
+CLASSMETHODS::
+
+
+INSTANCEMETHODS::
+
+METHOD:: rev
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: fxoff
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: bpf
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: boot
+(describe method here)
+
+ARGUMENT:: scope
+(describe argument here)
+
+ARGUMENT:: meter
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: fx
+(describe method here)
+
+ARGUMENT:: i1
+(describe argument here)
+
+ARGUMENT:: i2
+(describe argument here)
+
+ARGUMENT:: i3
+(describe argument here)
+
+ARGUMENT:: i4
+(describe argument here)
+
+ARGUMENT:: i5
+(describe argument here)
+
+ARGUMENT:: o1
+(describe argument here)
+
+ARGUMENT:: o2
+(describe argument here)
+
+ARGUMENT:: o3
+(describe argument here)
+
+ARGUMENT:: o4
+(describe argument here)
+
+ARGUMENT:: o5
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: synths
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: lpf
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: dly
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: tempo
+(describe method here)
+
+ARGUMENT:: tempo
+(describe argument here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: test
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+METHOD:: hpf
+(describe method here)
+
+returns:: (describe returnvalue here)
+
+
+EXAMPLES::
+
+code::
+~x = TecnoTexto.new;
+~x.boot; // turn on TecnoTexto
+~x.fx; // turn on effects
+~x.fxoff; // turn off effects
+~x.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
+::

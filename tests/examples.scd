@@ -6,11 +6,12 @@
 s.boot;
 s.plotTree;
 
-t = TecnoTexto.new;
-t.boot; // turn on TecnoTexto
-t.fx; // turn on effects
-t.fxoff; // turn off effects
-t.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
+~x = TecnoTexto.new;
+~x.boot; // turn on TecnoTexto
+~x.fx; // turn on effects
+~x.fxoff; // turn off effects
+~x.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
+//~x.dly.set(\dt, \dct);
 
 Synth(\sine, [\o1, 9]); // try a sine synth
 
