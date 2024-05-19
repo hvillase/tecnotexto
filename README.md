@@ -1,24 +1,25 @@
 # TecnoTexto
-Una Clase de SuperCollider para llamar tus SynthDefs y efectos.
+Una Clase de SuperCollider con SynthDefs y efectos.
 
 ## TecnoTexto
-La clase llama un documento con 5 formas básicas y 5 efectos organizados en SynthDefs: sine, saw, tri, pulse, white noise y silence; además reverb, delay, lpf, hpf y bpf. Los SynthDefs se encuentran en un documento con extensión -scd; este documento puede ser modificado para añadir otros sintetizadores y efectos.
-
-## Sintes
-El documento sintes.scd contiene los SynthDefs de formas de onda y efectos. Todos están encpasulados entre un par de paréntesis generales para que sean leídos de manera correcta. Este documento puede ser modificado al añadir otros instrumentos y efectos.
+La clase llama 5 formas de sonido electrónicas básicas, silencio y 5 efectos organizados en SynthDefs: sine, saw, tri, pulse, white noise y silence; además reverb, delay, lpf, hpf y bpf. La clase puede ser modificado para añadir otros sintetizadores y efectos.
 
 ## Ejemplo
 
 ```
-s.boot
+s.boot;
+// Declara una variable para TecnoTexto
 t = TecnoTexto.new;
+// Prende TecnoTexto
 t.boot;
+// Prende los efectos de TecnoTexto
 t.fx;
-t.fxoff; // apaga los efectos
+// Apaga los efectos
+t.fxoff;
 
 Synth(\sine); // Onda sinoidal con valores predeterminados
 
-Synth(\sine, [\r1, 2]); // Modificando su relajamiento
+Synth(\sine, [\r1, 2]); // Modificando su relajamiento en 2 segundos
 
 Synth(\sine, [\o1, 9]); // Salida por reverb
 ```
