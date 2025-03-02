@@ -144,11 +144,11 @@ s.boot;
 ~x.fx; // turn on effects
 ~x.fxoff; // turn off effects
 ~x.rev.set(\mix, 0.4, \room, 0.4, \out, 0); // set values for reverb
+~x.dly.set(\mdt, 0.3, \dt, 0.25, \dct, 2, \out, 0); // set values for delay
 
 Synth(\sine, [\o1, 11]);
 Synth(\saw);
 Synth(\lftri);
 Synth(\pulse);
 Synth(\wnoise);
-~x.dly.set(\mdt, 0.3, \dt, 0.25, \dct, 2, \out, 0); // set values for delay
 ::
