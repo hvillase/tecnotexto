@@ -1,11 +1,38 @@
 TITLE:: TecnoTexto
 summary:: (put short description here)
 categories:: Undocumented classes
-related:: Classes/SomeRelatedClass, Reference/SomeRelatedStuff, etc.
 
 DESCRIPTION::
-TecnoTexto is a class to process audio with delay, reverb and filters.
+TecnoTexto is a class to process audio with delay, reverb and filters. It contanins four Synths: \sine, \saw, \lftri, \pulse, \wnoise and \s.
 
+First code examples:
+
+code::
+s.boot;
+~x=TecnoTexto.new; // new tecnotexto
+~x.boot; // boot tecnotexto
+~x.fx; // boot fx
+
+Synth(\sine);
+Synth(\saw);
+Synth(\lftri);
+Synth(\pulse);
+Synth(\wnoise);
+Synth(\s);
+
+// FX outs and parameters
+~x.rev.set(\mix, 0.5, \room, 0.5,  \damp, 0.5); // reverb out 9
+~x.dly.set(\dt, 0.125, \dct, 1); // delay out 11
+~x.lpf.set(\cfl, 500); // low pass filter out 13
+~x.hpf.set(\cfh, 500); // hi pass filter out 15
+~x.bpf.set(\cfb, 1000, \rq, 1); // band pass filter out 17
+
+Synth(\saw, [\o2, 9]);
+Synth(\saw, [\o2, 11]);
+Synth(\saw, [\o2, 13]);
+Synth(\saw, [\o2, 15]);
+Synth(\saw, [\o2, 17]);
+::
 
 CLASSMETHODS::
 
@@ -13,17 +40,17 @@ CLASSMETHODS::
 INSTANCEMETHODS::
 
 METHOD:: rev
-(describe method here)
+Activates the Reverb with FreeVerb UGen.
 
 returns:: (describe returnvalue here)
 
 METHOD:: fxoff
-(describe method here)
+Quit the fx.
 
 returns:: (describe returnvalue here)
 
 METHOD:: bpf
-(describe method here)
+Band Pass Filter.
 
 returns:: (describe returnvalue here)
 
@@ -84,7 +111,7 @@ METHOD:: lpf
 returns:: (describe returnvalue here)
 
 METHOD:: dly
-(describe method here)
+Delay with parameters mdt, dt, dct, out.
 
 returns:: (describe returnvalue here)
 
@@ -116,11 +143,12 @@ s.boot;
 ~x.boot; // turn on TecnoTexto
 ~x.fx; // turn on effects
 ~x.fxoff; // turn off effects
-~x.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
+~x.rev.set(\mix, 0.4, \room, 0.4, \out, 0); // set values for reverb
 
 Synth(\sine, [\o1, 11]);
 Synth(\saw);
 Synth(\lftri);
 Synth(\pulse);
 Synth(\wnoise);
+~x.dly.set(\mdt, 0.3, \dt, 0.25, \dct, 2, \out, 0); // set values for delay
 ::

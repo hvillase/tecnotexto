@@ -13,7 +13,8 @@ s.plotTree;
 ~x.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
 //~x.dly.set(\dt, \dct);
 
-Synth(\sine, [\o1, 9]); // try a sine synth
+Synth(\sine, [\o1, 9]); // try a sine synth with reverb
+Synth(\sine, [\o1, 11]); // try a sine synth with delay
 
 // second instance of TecnoTexto to add more effects: rev, delay, lpf, hpf and bpf
 
