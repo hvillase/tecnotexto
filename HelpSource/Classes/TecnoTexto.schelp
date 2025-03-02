@@ -118,7 +118,7 @@ s.boot;
 ~x.fxoff; // turn off effects
 ~x.rev.set(\mix, 0.4, \room, 0.4); // set values of reverb
 
-Synth(\sine);
+Synth(\sine, [\o1, 11]);
 Synth(\saw);
 Synth(\lftri);
 Synth(\pulse);
