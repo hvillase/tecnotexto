@@ -2,7 +2,7 @@
 Una Clase de SuperCollider con SynthDefs y efectos.
 
 ## TecnoTexto
-La clase llama 5 formas de sonido electrónicas básicas, silencio y 5 efectos organizados en SynthDefs: sine, saw, tri, pulse, white noise y silence; además reverb, delay, lpf, hpf y bpf. La clase puede ser modificado para añadir otros sintetizadores y efectos.
+La clase llama a 5 formas de sonido electrónicas básicas, silencio y a 5 efectos. Lo anterior está organizado en los siguientes SynthDefs: sine, saw, tri, pulse, white noise y silence; además reverb, delay, lpf, hpf y bpf. La clase puede ser modificada para añadir otros sintetizadores y efectos.
 
 ## Ejemplo
 
